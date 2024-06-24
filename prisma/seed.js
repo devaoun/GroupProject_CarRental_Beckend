@@ -296,21 +296,21 @@ const carsData = [
     { carModelId: 16, licensePlate: 'ศข 1209', status: 'available', branchId: 5, useDate: '2024-01-01' },
     { carModelId: 16, licensePlate: 'สก 1210', status: 'available', branchId: 5, useDate: '2024-01-01' },
 
-    { carModelId: 16, licensePlate: 'กข 1211', status: 'available', branchId: 1, useDate: '2024-01-01' },
-    { carModelId: 16, licensePlate: 'ขก 1212', status: 'available', branchId: 1, useDate: '2024-01-01' },
-    { carModelId: 16, licensePlate: 'งข 1213', status: 'available', branchId: 1, useDate: '2024-01-01' },
-    { carModelId: 16, licensePlate: 'จก 1214', status: 'available', branchId: 2, useDate: '2024-01-01' },
-    { carModelId: 16, licensePlate: 'ฉข 1215', status: 'available', branchId: 2, useDate: '2024-01-01' },
-    { carModelId: 16, licensePlate: 'ชก 1216', status: 'available', branchId: 2, useDate: '2024-01-01' },
-    { carModelId: 16, licensePlate: 'ทข 1217', status: 'available', branchId: 3, useDate: '2024-01-01' },
-    { carModelId: 16, licensePlate: 'บก 1218', status: 'available', branchId: 3, useDate: '2024-01-01' },
-    { carModelId: 16, licensePlate: 'ปข 1219', status: 'available', branchId: 3, useDate: '2024-01-01' },
-    { carModelId: 16, licensePlate: 'พข 1220', status: 'available', branchId: 4, useDate: '2024-01-01' },
-    { carModelId: 16, licensePlate: 'ภก 1221', status: 'available', branchId: 4, useDate: '2024-01-01' },
-    { carModelId: 16, licensePlate: 'มข 1222', status: 'available', branchId: 4, useDate: '2024-01-01' },
-    { carModelId: 16, licensePlate: 'รข 1223', status: 'available', branchId: 5, useDate: '2024-01-01' },
-    { carModelId: 16, licensePlate: 'ศข 1224', status: 'available', branchId: 5, useDate: '2024-01-01' },
-    { carModelId: 16, licensePlate: 'สก 1225', status: 'available', branchId: 5, useDate: '2024-01-01' },
+    { carModelId: 17, licensePlate: 'กข 1211', status: 'available', branchId: 1, useDate: '2024-01-01' },
+    { carModelId: 17, licensePlate: 'ขก 1212', status: 'available', branchId: 1, useDate: '2024-01-01' },
+    { carModelId: 17, licensePlate: 'งข 1213', status: 'available', branchId: 1, useDate: '2024-01-01' },
+    { carModelId: 17, licensePlate: 'จก 1214', status: 'available', branchId: 2, useDate: '2024-01-01' },
+    { carModelId: 17, licensePlate: 'ฉข 1215', status: 'available', branchId: 2, useDate: '2024-01-01' },
+    { carModelId: 17, licensePlate: 'ชก 1216', status: 'available', branchId: 2, useDate: '2024-01-01' },
+    { carModelId: 17, licensePlate: 'ทข 1217', status: 'available', branchId: 3, useDate: '2024-01-01' },
+    { carModelId: 17, licensePlate: 'บก 1218', status: 'available', branchId: 3, useDate: '2024-01-01' },
+    { carModelId: 17, licensePlate: 'ปข 1219', status: 'available', branchId: 3, useDate: '2024-01-01' },
+    { carModelId: 17, licensePlate: 'พข 1220', status: 'available', branchId: 4, useDate: '2024-01-01' },
+    { carModelId: 17, licensePlate: 'ภก 1221', status: 'available', branchId: 4, useDate: '2024-01-01' },
+    { carModelId: 17, licensePlate: 'มข 1222', status: 'available', branchId: 4, useDate: '2024-01-01' },
+    { carModelId: 17, licensePlate: 'รข 1223', status: 'available', branchId: 5, useDate: '2024-01-01' },
+    { carModelId: 17, licensePlate: 'ศข 1224', status: 'available', branchId: 5, useDate: '2024-01-01' },
+    { carModelId: 17, licensePlate: 'สก 1225', status: 'available', branchId: 5, useDate: '2024-01-01' },
 ]
 
 const carsSeed = async () => {
@@ -318,18 +318,19 @@ const carsSeed = async () => {
     // await prisma.carTypes.createMany({ data: carTypesData })
     // await prisma.carModels.createMany({ data: carModelsData })
     // await prisma.cars.createMany({ data: carsData })
-    return await prisma.$transaction(async (tx) => {
-        try {
-            await tx.branches.createMany({ data: branchesData })
-            await tx.carTypes.createMany({ data: carTypesData })
-            await tx.carModels.createMany({ data: carModelsData })
-            await tx.cars.createMany({ data: carsData })
-            return
-        } catch (error) {
-            console.log(error)
-            return
-        }
-    })
+
+    // transaction ใช้ตอนไม่มีข้อมูลในตาราง
+    // try {
+    //     return await prisma.$transaction(async (tx) => {
+    //         await tx.branches.createMany({ data: branchesData })
+    //         await tx.carTypes.createMany({ data: carTypesData })
+    //         await tx.carModels.createMany({ data: carModelsData })
+    //         await tx.cars.createMany({ data: carsData })
+    //         return
+    //     })
+    // } catch (error) {
+    //     console.log(error)
+    // }
 }
 
 carsSeed();
